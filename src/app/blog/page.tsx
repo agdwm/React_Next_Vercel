@@ -1,17 +1,23 @@
-import { getStrapiURL } from "@/helpers/api-helper";
+import { fetchApi } from "@/helpers/fetch-api";
 
-const getData = async () => {
-  const url = getStrapiURL("/api/posts");
+const getData = async (page = 1, pageSize = 2) => {
+  const path = "/posts";
+  // "urlParamsObject" contains configuration query parameters for an API request to Strapi
+  const urlParamsObject = {
+    populate: "*",
+    sort: { createdAt: "asc" },
+    pagination: {
+      page: page,
+      pageSize: pageSize,
+    },
+  };
 
-  const res = await fetch(url, {
-    next: { revalidate: 60 },
-  });
-  const data = await res.json();
-  return data;
+  const { data, meta } = await fetchApi(path, urlParamsObject);
+  return { data, pagination: meta.pagination };
 };
 
 const Blog = async () => {
-  const { data } = await getData();
+  const { data, pagination } = await getData();
 
   return (
     <div>
