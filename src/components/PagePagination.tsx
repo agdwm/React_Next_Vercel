@@ -1,3 +1,4 @@
+import { cn } from "@/helpers/classnames";
 import Link from "next/link";
 
 interface Props {
@@ -28,9 +29,9 @@ const PagePagination = ({ pagination }: Props) => {
         <li>
           <Link
             href={page === 1 ? `/blog?page=${page}` : `/blog?page=${page - 1}`}
-            className={`${classPrevious} ${
-              page === 1 ? `${classDisabled}` : ""
-            }`}
+            className={cn(classPrevious, {
+              [classDisabled]: page === 1,
+            })}
           >
             Previous
           </Link>
@@ -40,7 +41,9 @@ const PagePagination = ({ pagination }: Props) => {
             <Link
               href={`/blog?page=${index + 1}`}
               aria-current={index + 1 === page && "page"}
-              className={index + 1 === page ? classNumberActive : classNumber}
+              className={cn(
+                index + 1 === page ? classNumberActive : classNumber
+              )}
             >
               {index + 1}
             </Link>
@@ -53,9 +56,9 @@ const PagePagination = ({ pagination }: Props) => {
                 ? `/blog?page=${page}`
                 : `/blog?page=${page + 1}`
             }
-            className={`${classNext} ${
-              page === pageCount ? `${classDisabled}` : ""
-            }`}
+            className={cn(classNext, {
+              [classDisabled]: page === pageCount,
+            })}
           >
             Next
           </Link>
