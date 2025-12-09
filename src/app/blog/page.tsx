@@ -1,5 +1,6 @@
 import PageCardImage from "@/components/PageCardImage";
 import PageHeading from "@/components/PageHeading";
+import PagePagination from "@/components/PagePagination";
 import { fetchApi } from "@/helpers/fetch-api";
 import { Post } from "@/interfaces/post";
 
@@ -19,12 +20,26 @@ const getData = async (page = 1, pageSize = 2) => {
   return { data, pagination: meta.pagination };
 };
 
-const Blog = async () => {
-  const { data } = await getData();
+interface Props {
+  searchParams: Promise<{
+    page?: string;
+  }>;
+}
+
+const Blog = async ({ searchParams }: Props) => {
+  const { page } = await searchParams;
+  let pageNumber = page ? parseInt(page) : 1;
+
+  if (isNaN(pageNumber) || pageNumber < 1) {
+    pageNumber = 1;
+  }
+
+  const { data, pagination } = await getData(pageNumber);
 
   return (
-    <div>
+    <div className="space-y-8">
       <PageHeading text="Latest Posts" />
+      <PagePagination pagination={pagination} />
       <div className="grid gap-4">
         {data.map((post: Post) => (
           <PageCardImage key={post.id} post={post} />
@@ -33,4 +48,5 @@ const Blog = async () => {
     </div>
   );
 };
+
 export default Blog;
