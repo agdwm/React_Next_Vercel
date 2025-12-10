@@ -10,6 +10,7 @@
   "dependencies": {
     "@strapi/blocks-react-renderer": "^1.0.2",
     "clsx": "^2.1.1",
+    "flowbite-react": "^0.12.11",
     "framer-motion": "^12.23.25",
     "next": "16.0.8",
     "nextjs-toploader": "^3.9.17",
