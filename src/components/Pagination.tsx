@@ -1,5 +1,8 @@
+"use client";
+
 import { cn } from "@/helpers/classnames";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Props {
   pagination: {
@@ -10,7 +13,8 @@ interface Props {
   };
 }
 
-const PagePagination = ({ pagination }: Props) => {
+const Pagination = ({ pagination }: Props) => {
+  const pathname = usePathname();
   const { page, pageCount } = pagination;
 
   const classNumber =
@@ -28,7 +32,11 @@ const PagePagination = ({ pagination }: Props) => {
       <ul className="flex justify-center -space-x-px text-sm">
         <li>
           <Link
-            href={page === 1 ? `/blog?page=${page}` : `/blog?page=${page - 1}`}
+            href={
+              page === 1
+                ? `${pathname}?page=${page}`
+                : `${pathname}?page=${page - 1}`
+            }
             className={cn(classPrevious, {
               [classDisabled]: page === 1,
             })}
@@ -37,9 +45,9 @@ const PagePagination = ({ pagination }: Props) => {
           </Link>
         </li>
         {Array.from({ length: pageCount }).map((_, index) => (
-          <li>
+          <li key={index + 1}>
             <Link
-              href={`/blog?page=${index + 1}`}
+              href={`${pathname}?page=${index + 1}`}
               aria-current={index + 1 === page && "page"}
               className={cn(
                 index + 1 === page ? classNumberActive : classNumber
@@ -53,8 +61,8 @@ const PagePagination = ({ pagination }: Props) => {
           <Link
             href={
               page === pageCount
-                ? `/blog?page=${page}`
-                : `/blog?page=${page + 1}`
+                ? `${pathname}?page=${page}`
+                : `${pathname}?page=${page + 1}`
             }
             className={cn(classNext, {
               [classDisabled]: page === pageCount,
@@ -67,4 +75,4 @@ const PagePagination = ({ pagination }: Props) => {
     </nav>
   );
 };
-export default PagePagination;
+export default Pagination;

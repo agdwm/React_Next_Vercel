@@ -1,4 +1,6 @@
 import type { BlocksContent } from "@strapi/blocks-react-renderer";
+/** Bloques de texto o contenido enriquecido (Rich Text de Strapi) */
+
 export interface Post {
   id: number;
   documentId: string;

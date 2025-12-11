@@ -1,6 +1,6 @@
 import PageCardImage from "@/components/PageCardImage";
 import PageHeading from "@/components/PageHeading";
-import PagePagination from "@/components/PagePagination";
+import PagePagination from "@/components/Pagination";
 import { fetchApi } from "@/helpers/fetch-api";
 import { Post } from "@/interfaces/post";
 

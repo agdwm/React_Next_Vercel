@@ -7,7 +7,7 @@ import {
   NavbarLink,
   NavbarToggle,
 } from "flowbite-react";
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [

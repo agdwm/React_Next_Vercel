@@ -4,6 +4,7 @@ import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import PageTransition from "@/components/PageTransition";
 import Navigation from "@/components/Navigation";
+import CartProvider from "@/context/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,10 @@ export default function RootLayout({
       >
         <NextTopLoader crawlSpeed={300} crawl={false} />
         <main className="container mx-auto max-w-2xl mt-4 space-y-4">
-          <Navigation />
-          <PageTransition>{children}</PageTransition>
+          <CartProvider>
+            <Navigation />
+            <PageTransition>{children}</PageTransition>
+          </CartProvider>
         </main>
       </body>
     </html>
