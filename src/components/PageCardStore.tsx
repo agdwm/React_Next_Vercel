@@ -24,7 +24,7 @@ const PageCardImage = ({ book }: Props) => {
   if (!url || !width || !height) return null;
 
   const handleAddToCart = () => {
-    addCartProducts({ id, title, price: parseFloat(price) });
+    addCartProducts({ id, title, price: parseFloat(price), stock });
     router.push("/cart");
   };
 
