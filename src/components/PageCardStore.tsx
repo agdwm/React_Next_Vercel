@@ -7,6 +7,7 @@ import Image from "next/image";
 import { cn } from "@/helpers/classnames";
 import { cartContext } from "@/context/CartContext";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { formatPrice } from "@/helpers/format-price";
 
 interface Props {
   book: Book;
@@ -42,7 +43,9 @@ const PageCardImage = ({ book }: Props) => {
           {title}
         </h5>
 
-        <p className="text-gray-500 mb-2 text-lg">Precio: {price}€</p>
+        <p className="text-gray-500 mb-2 text-lg">
+          Precio: {formatPrice(price)}
+        </p>
         <p className="text-gray-500 mb-2 text-lg">Stock: {stock} unidades</p>
         <div className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           <BlocksRenderer content={description} />
