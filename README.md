@@ -268,4 +268,11 @@ Este proyecto está bajo licencia MIT.
 
 ---
 
+## 👨‍💻 Autor
+
+Proyecto desarrollado como parte del curso Udemy de Next.js:
+[React JS con TypeScript y Next.js Curso Desarrollo FullStack](https://www.udemy.com/course/curso-react-js/)
+
+---
+
 **Frontend desarrollado con Next.js 16** | [Vercel](https://vercel.com)
